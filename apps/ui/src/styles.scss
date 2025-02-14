@@ -1,6 +1,8 @@
-@use "./app/styles/material.scss";
 
-@use "./app/styles/colors.scss";
+@use './app/styles/material.scss';
 
+@use './app/styles/colors.scss';
 
-@use "./app/styles/custom.scss";
+@use './app/styles/custom.scss';
+
+@use "./app/styles/tailwind.scss";
