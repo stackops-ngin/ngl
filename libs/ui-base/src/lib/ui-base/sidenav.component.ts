@@ -20,27 +20,30 @@ import { SidenavHeaderComponent } from './sidenav-header.component';
     SidenavHeaderComponent,
   ],
   template: `
-    <lib-sidenav-header [collapsd]="collapsed()" />
-    <mat-nav-list class="[--mat-list-active-indicator-shape:0px]">
+
+    <mat-nav-list
+      class="[--mat-list-active-indicator-shape:0px] mb-6"
+      style="display: flex; flex-direction: column;"
+      [style.height]="navTopMarginAdj()"
+    >
+      <lib-sidenav-header [collapsd]="collapsed()"></lib-sidenav-header>
       @for (item of menuItems(); track item.label) {
       <lib-menu-item [item]="item" [collapsed]="collapsed()" />
       }
-
-      <mat-list-item></mat-list-item>
-      <mat-list-item></mat-list-item>
+      <span style="flex-grow: 1;"></span>
 
       <mat-list-item (click)="toggleDark()">
         <mat-icon matListItemIcon>brightness_6</mat-icon>
         @if (!collapsed()) {
-          <div matListItemTitle style="font-size: 0.8rem;">
+        <div matListItemTitle style="font-size: 0.8rem;">
           {{ navLightDark() }} theme
         </div>
         }
       </mat-list-item>
       <mat-list-item (click)="toggleCollapsed()">
-        <mat-icon matListItemIcon>{{
-          collapsed() ? 'more_horiz' : 'more_vert'
-        }}</mat-icon>
+        <mat-icon matListItemIcon
+          >{{ collapsed() ? 'more_horiz' : 'more_vert' }}
+        </mat-icon>
         @if (!collapsed()) {
         <span matListItemTitle style="font-size: 0.8rem;"> Icons only </span>
         }
@@ -62,6 +65,8 @@ export class SidenavComponent {
   collapsed = model<boolean>(false);
   navLightDark = signal('Dark');
   darkMode = computed(() => this.navLightDark() === 'Light');
+  navTopMargin = input(64);
+  navTopMarginAdj = computed<string>(() => `calc(100vh - ${this.navTopMargin()}px)`);
 
   toggleCollapsed() {
     this.collapsed.update((v) => !v);
