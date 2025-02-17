@@ -15,7 +15,9 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@ngl/apps": ["apps/src/index.ts"],
       "@ngl/domain": ["libs/domain/src/index.ts"],
+      "@ngl/login": ["libs/login/src/index.ts"],
       "@ngl/ui-base": ["libs/ui-base/src/index.ts"]
     }
   },

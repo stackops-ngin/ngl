@@ -7,16 +7,22 @@
   "targets": {
     "build": {
       "executor": "@nx/esbuild:esbuild",
-      "outputs": ["{options.outputPath}"],
+      "outputs": [
+        "{options.outputPath}"
+      ],
       "defaultConfiguration": "production",
       "options": {
         "platform": "node",
         "outputPath": "dist/apps/lmbda",
-        "format": ["cjs"],
+        "format": [
+          "cjs"
+        ],
         "bundle": false,
         "main": "apps/lmbda/src/main.ts",
         "tsConfig": "apps/lmbda/tsconfig.app.json",
-        "assets": ["apps/lmbda/src/assets"],
+        "assets": [
+          "apps/lmbda/src/assets"
+        ],
         "generatePackageJson": true,
         "esbuildOptions": {
           "sourcemap": true,
@@ -40,7 +46,9 @@
     "serve": {
       "executor": "@nx/js:node",
       "defaultConfiguration": "development",
-      "dependsOn": ["build"],
+      "dependsOn": [
+        "build"
+      ],
       "options": {
         "buildTarget": "lmbda:build",
         "runBuildTargetDependencies": false
@@ -53,6 +61,19 @@
           "buildTarget": "lmbda:build:production"
         }
       }
+    },
+    "deploy": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "./deploy-origin-lambda.sh"
+      },
+      "dependsOn": [
+        {
+          "target": "build",
+          "projects": "self",
+          "configuration": "production"
+        }
+      ]
     }
   }
 }

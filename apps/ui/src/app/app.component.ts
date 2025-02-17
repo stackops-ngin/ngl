@@ -1,13 +1,11 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { UiBaseComponent } from '@ngl/ui-base';
 import { menuItems } from './menu-items';
 
 @Component({
-  imports: [ RouterModule, UiBaseComponent],
+  imports: [ RouterModule],
   selector: 'app-root',
   template: `
-    <lib-ui-base [menuItems]="menuItems"></lib-ui-base>
     <router-outlet></router-outlet>
   `,
   styles: '',

@@ -1,3 +1,3 @@
-export * from './lib/ui-base/ui-base.component';
-export * from './lib/ui-base/menu-item';
-export * from './lib/ui-base/layout.component';
+export * from './lib/menu-item';
+export * from './lib/layout.component';
+export * from './lib/layout-empty.component';
